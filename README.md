@@ -15,13 +15,21 @@ Create a Events Calendar widget in any javascript frontend framework (We would l
    UI : Visual presentation ideas can be taken from event-management ideas like bookyshow / explara.
    
    The pop-up/expansion with details should have : 
+
     	1. Event name 
+
 		2. Host Institute name
+
 		3. A brief paragraph about the event
+
 		4. The event poster which will have pricing and other details. 
+
 		5. Register button, which will take user to the event registration form ( explained in xyz feature ) 
+
 		6. Percentage of seats still left ( not the actual count ) 
+
 		7. Instructor details if needed ( event based feature )  
+		
 		8. Add filters - show top events, events in your city, people registered for the event, days to register 
 
 ## Technical Requirements
