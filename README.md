@@ -50,11 +50,11 @@ Commit your code & generate a pull request.
 
 ### Use online services 
 
-Like plnkr.co , jsFiddle , jsBin , codePen or any others such free service. 
+Like plnkr.co , jsFiddle , jsBin , codePen or any other such free service. 
 
 ### Compressed files (the old linux way)
 
-Please write a mail explaining how to test the code you just send. 
+Please write a mail explaining how to test the code with the compressed files attached at suhassrivastava@valonia.co.in
 
 
 
