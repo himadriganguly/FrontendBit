@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Valonia Events</title>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  
+  <script type="text/x-handlebars" data-template-name="events">
+    
+    <!-- floating controls -->
+    <div class="floating-controls">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3"><div class="input-group">
+            <span class="input-group-addon"><input type="checkbox" name="showControl" id="top-events" aria-label="Toggle top events"></span>
+            <label class="form-control" for="top-events">Top events</label>
+          </div></div>
+          <div class="col-lg-3"><div class="input-group">
+            <span class="input-group-addon"><input type="checkbox" name="showControl" id="people-registered" aria-label="Toggle number of seats remaining"></span>
+            <label class="form-control" for="people-registered">Seats remaining</label>
+          </div></div>
+          <div class="col-lg-3"><div class="input-group">
+            <span class="input-group-addon"><input type="checkbox" name="showControl" id="days-to-register" aria-label="Toggle days left to register"></span>
+            <label class="form-control" for="days-to-register">Days left to register</label>
+          </div></div>
+          <!-- show events of location... -->
+          <div class="col-lg-3"><div class="input-group">
+            <label class="input-group-addon" for="event-locality">Show events in</label>
+            <input type="text" class="form-control" id="event-locality" value="Bangalore" aria-label="Locality of Events">
+          </div></div>
+        </div> <!-- /row -->
+      </div> <!-- /container -->
+    </div> <!-- /floating controls -->
+    
+    <!-- list of events go here -->
+    <div class="container"><div class="row">
+      <ul class="event-cards clearfix">
+        {{#each event in model}}
+        <li {{bind-attr class=":col-lg-2 event.isTopEvent:top-event"}}>
+          <div class="card">
+            <h2>{{event.title}}</h2>
+            <div class="event-venue"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>{{event.venue}}</div>
+            <date><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>{{event.date}}</date>
+            {{#link-to "event" event class="thumbnail"}}
+              <img {{bind-attr src="event.thumbUrl"}} {{bind-attr alt="event.title"}}>
+            {{/link-to}}
+            <div class="event-people-registered"><strong>{{event.seatsLeft}}</strong> seats remaining</div>
+            <div class="event-days-left"><strong>{{event.daysLeft}}</strong> days left to register</div>
+            <div>{{#link-to "event" event}}See more{{/link-to}}</div>
+          </div>
+        </li>
+        {{/each}}
+      </ul>
+    </div></div>
+    
+    {{outlet}}
+  </script>
+  
+  <script type="text/x-handlebars" data-template-name="event">
+    <div class="single-event modal fade in" id="eventModal" tabindex="-1" role="dialog" aria-labelledby="Detailed event info" aria-hidden="true"><div class="modal-dialog"><div class="modal-content">
+      <div class="modal-header">
+        <a href="#" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></a>
+        <h2>{{title}}</h2>
+        <div class="event-venue"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>{{venue}}</div>
+        <date><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>{{date}}</date>
+      </div>
+      <div class="modal-body">
+        <img {{bind-attr src="posterUrl"}} {{bind-attr alt="title"}} class="img-responsive">
+        <p>{{description}}</p>
+        <div class="event-speakers">Speaker(s): <span>{{speakers}}</span></div>
+      </div>
+      <div class="modal-footer">
+        <div class="event-people-registered"><strong>{{seatsLeft}}</strong> seats remaining</div>
+        <div class="event-days-left"><strong>{{daysLeft}}</strong> days left to register</div>
+        <!-- percent of seats filled -->
+        <div class="progress">
+          <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" {{bind-attr aria-valuenow="percent"}} aria-valuemin="0" aria-valuemax="100" {{bind-style width="percent" unit="%"}}>
+            {{percent}}% seats booked
+          </div>
+        </div>
+        <a class="btn btn-info" target="_blank">Register now</a>
+      </div>
+    </div></div></div>
+  </script>
+
+  <script src="js/libs/jquery-1.10.2.js"></script>
+  <script src="js/libs/handlebars-v2.0.0.js"></script>
+  <script src="js/libs/ember-1.9.1.js"></script>
+  <script src="js/libs/ember-data.js"></script>
+  <script src="js/libs/bootstrap.min.js"></script>
+  <script src="js/app.js"></script>
+  <!-- some menial jquery at work -->
+  <script>
+    // on checking or unchecking
+    $("html").on("change", "#people-registered", function() {
+      $(".event-people-registered").toggle();
+    });
+    
+    $("html").on("change", "#days-to-register", function() {
+      $(".event-days-left").toggle();
+    });
+    
+    $("html").on("change", "#top-events", function() {
+      $(".event-cards li").not(".top-event").toggle();
+    });
+  </script>
+  <!-- to activate the test runner, add the "?test" query string parameter -->
+  <script src="tests/runner.js"></script>
+</body>
+</html>
