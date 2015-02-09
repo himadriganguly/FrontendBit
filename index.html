@@ -1,44 +1,55 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-   <head>
-      <meta charset='utf-8'>
-      <meta http-equiv="X-UA-Compatible" content="chrome=1">
-      <meta name="description" content="Frontendbit : Bit Work for frontend of Valonia community portal. ">
-      <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-      <title>Frontendbit</title>
-   </head>
-   <body>
-      <!-- HEADER -->
-      <div id="header_wrap" class="outer">
-         <header class="inner">
-            <a id="forkme_banner" href="https://github.com/ValoniaInc/FrontendBit">View on GitHub</a>
-            <h1 id="project_title">Frontendbit</h1>
-            <h2 id="project_tagline">Bit Work for frontend of Valonia community portal. </h2>
-            <section id="downloads">
-               <a class="zip_download_link" href="https://github.com/ValoniaInc/FrontendBit/zipball/master">Download this project as a .zip file</a>
-               <a class="tar_download_link" href="https://github.com/ValoniaInc/FrontendBit/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-         </header>
-      </div>
-      <!-- MAIN CONTENT -->
-      <div id="main_content_wrap" class="outer">
-         <section id="main_content" class="inner">
-            <h1>
-               <a id="frontendbit" class="anchor" href="#frontendbit" aria-hidden="true"><span class="octicon octicon-link"></span></a>FrontendBit
-            </h1>
-            <p>Bit Work for frontend of Valonia community portal. </p>
-            <h2>
-               <a id="problem-statement-part-i--" class="anchor" href="#problem-statement-part-i--" aria-hidden="true"><span class="octicon octicon-link"></span></a>Problem Statement Part I -
-            </h2>
-            <p>Create a Events Calendar widget in any javascript frontend framework (We would love it , if you could use AngularJS /EmberJs /BackboneJs ) that satisfies the following user requirements.</p>
-            <h3>
-               <a id="widget-requirements" class="anchor" href="#widget-requirements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Widget Requirements
-            </h3>
-            <p>Overview : Events Calendar will feature all events Valonia is hosting/organizing. This will be a normal calendar showing events happening in an ascending date format. Only events are shown, not the whole calendar. Clicking on an event will either expand/popup with major details and a ‘register now’ button. </p>
-            <p>Purpose : This will be used to show users right on the home page, what all events Valonia is hosting. He/she can scroll down and see if there is something they can attend.</p>
-            <p>UI : Visual presentation ideas can be taken from event-management ideas like bookyshow / explara.</p>
-            <p>The pop-up/expansion with details should have : </p>
-            <pre><code>    1. Event name 
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Frontendbit by ValoniaInc</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Frontendbit</h1>
+        <p>Bit Work for frontend of Valonia community portal. </p>
+
+        <p class="view"><a href="https://github.com/ValoniaInc/FrontendBit">View the Project on GitHub <small>ValoniaInc/FrontendBit</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/ValoniaInc/FrontendBit/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/ValoniaInc/FrontendBit/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/ValoniaInc/FrontendBit">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="frontendbit" class="anchor" href="#frontendbit" aria-hidden="true"><span class="octicon octicon-link"></span></a>FrontendBit</h1>
+
+<p>Bit Work for frontend of Valonia community portal. </p>
+
+<h2>
+<a id="problem-statement-part-i--" class="anchor" href="#problem-statement-part-i--" aria-hidden="true"><span class="octicon octicon-link"></span></a>Problem Statement Part I -</h2>
+
+<p>Create a Events Calendar widget in any javascript frontend framework (We would love it , if you could use AngularJS /EmberJs /BackboneJs ) that satisfies the following user requirements.</p>
+
+<h3>
+<a id="widget-requirements" class="anchor" href="#widget-requirements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Widget Requirements</h3>
+
+<p>Overview : Events Calendar will feature all events Valonia is hosting/organizing. This will be a normal calendar showing events happening in an ascending date format. Only events are shown, not the whole calendar. Clicking on an event will either expand/popup with major details and a ‘register now’ button. </p>
+
+<p>Purpose : This will be used to show users right on the home page, what all events Valonia is hosting. He/she can scroll down and see if there is something they can attend.</p>
+
+<p>UI : Visual presentation ideas can be taken from event-management ideas like bookyshow / explara.</p>
+
+<p>The pop-up/expansion with details should have : </p>
+
+<pre><code>    1. Event name 
 
     2. Host Institute name
 
@@ -54,67 +65,51 @@
 
     8. Add filters - show top events, events in your city, people registered for the event, days to register 
 </code></pre>
-            <h2>
-               <a id="technical-requirements" class="anchor" href="#technical-requirements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Technical Requirements
-            </h2>
-            <ol>
-               <li>
-                  <p>Any Javascript Framework (AngularJS / EmberJs preferred)</p>
-               </li>
-               <li>
-                  <p>You can use a temporary backend for serving data for the widget 
-                     OR 
-                     You could store data in localstorage of the browser and serve from there
-                  </p>
-               </li>
-               <li>
-                  <p>CSS Frameworks : Foundation or Bootstrap</p>
-               </li>
-               <li>
-                  <p>Responsive design </p>
-               </li>
-            </ol>
-            <h2>
-               <a id="approach" class="anchor" href="#approach" aria-hidden="true"><span class="octicon octicon-link"></span></a>Approach
-            </h2>
-            <p>The Feature would be completed when Swapnil , reviews and accepts the same. </p>
-            <p>Swapnil may go crazy on you, and ask you to make more changes. Please be patient. We are looking to build our team at Valonia , your commitment is more important than your skills. </p>
-            <h2>
-               <a id="submissions" class="anchor" href="#submissions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Submissions
-            </h2>
-            <h3>
-               <a id="if-you-know-git-and-github" class="anchor" href="#if-you-know-git-and-github" aria-hidden="true"><span class="octicon octicon-link"></span></a>If you know GIT and GITHUB?
-            </h3>
-            <p>You could create a fork of this repo. 
-               Commit your code &amp; generate a pull request. 
-            </p>
-            <h3>
-               <a id="use-online-services" class="anchor" href="#use-online-services" aria-hidden="true"><span class="octicon octicon-link"></span></a>Use online services
-            </h3>
-            <p>Like plnkr.co , jsFiddle , jsBin , codePen or any other such free service. </p>
-            <h3>
-               <a id="compressed-files-the-old-linux-way" class="anchor" href="#compressed-files-the-old-linux-way" aria-hidden="true"><span class="octicon octicon-link"></span></a>Compressed files (the old linux way)
-            </h3>
-            <p>Please write a mail explaining how to test the code with the compressed files attached to Suhas Srivastava at <a href="mailto:suhassrivastava@valonia.co.in">suhassrivastava[at]valonia.co.in</a></p>
-         </section>
 
-         <section id="ultra_content" class="inner">
-            
-            <h2>
-               <a id="results" class="anchor" href="#submissions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Some Submissions
-            </h2>
-            <h4>
-               <a id="harish_prabhu" class="anchor" href="#harish_prabhu" aria-hidden="true"><span class="octicon octicon-link"></span></a>Harish Prabhu
-            </h4>
-            <p>Submission <a href="harishPrabhu"> #1 </a></p>
-         </section>
-      </div>
-      <!-- FOOTER  -->
-      <div id="footer_wrap" class="outer">
-         <footer class="inner">
-            <p class="copyright">Frontendbit maintained by <a href="https://github.com/ValoniaInc">ValoniaInc</a></p>
-            <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-         </footer>
-      </div>
-   </body>
+<h2>
+<a id="technical-requirements" class="anchor" href="#technical-requirements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Technical Requirements</h2>
+
+<ol>
+<li><p>Any Javascript Framework (AngularJS / EmberJs preferred)</p></li>
+<li><p>You can use a temporary backend for serving data for the widget 
+                                OR 
+   You could store data in localstorage of the browser and serve from there</p></li>
+<li><p>CSS Frameworks : Foundation or Bootstrap</p></li>
+<li><p>Responsive design </p></li>
+</ol>
+
+<h2>
+<a id="approach" class="anchor" href="#approach" aria-hidden="true"><span class="octicon octicon-link"></span></a>Approach</h2>
+
+<p>The Feature would be completed when Swapnil , reviews and accepts the same. </p>
+
+<p>Swapnil may go crazy on you, and ask you to make more changes. Please be patient. We are looking to build our team at Valonia , your commitment is more important than your skills. </p>
+
+<h2>
+<a id="submissions" class="anchor" href="#submissions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Submissions</h2>
+
+<h3>
+<a id="if-you-know-git-and-github" class="anchor" href="#if-you-know-git-and-github" aria-hidden="true"><span class="octicon octicon-link"></span></a>If you know GIT and GITHUB?</h3>
+
+<p>You could create a fork of this repo. 
+Commit your code &amp; generate a pull request. </p>
+
+<h3>
+<a id="use-online-services" class="anchor" href="#use-online-services" aria-hidden="true"><span class="octicon octicon-link"></span></a>Use online services</h3>
+
+<p>Like plnkr.co , jsFiddle , jsBin , codePen or any other such free service. </p>
+
+<h3>
+<a id="compressed-files-the-old-linux-way" class="anchor" href="#compressed-files-the-old-linux-way" aria-hidden="true"><span class="octicon octicon-link"></span></a>Compressed files (the old linux way)</h3>
+
+<p>Please write a mail explaining how to test the code with the compressed files attached at <a href="mailto:suhassrivastava@valonia.co.in">suhassrivastava@valonia.co.in</a></p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/ValoniaInc">ValoniaInc</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
 </html>
