@@ -1,114 +1,202 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>Valonia Events</title>
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-  
-  <script type="text/x-handlebars" data-template-name="events">
-    
-    <!-- floating controls -->
-    <div class="floating-controls">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-3"><div class="input-group">
-            <span class="input-group-addon"><input type="checkbox" name="showControl" id="top-events" aria-label="Toggle top events"></span>
-            <label class="form-control" for="top-events">Top events</label>
-          </div></div>
-          <div class="col-lg-3"><div class="input-group">
-            <span class="input-group-addon"><input type="checkbox" name="showControl" id="people-registered" aria-label="Toggle number of seats remaining"></span>
-            <label class="form-control" for="people-registered">Seats remaining</label>
-          </div></div>
-          <div class="col-lg-3"><div class="input-group">
-            <span class="input-group-addon"><input type="checkbox" name="showControl" id="days-to-register" aria-label="Toggle days left to register"></span>
-            <label class="form-control" for="days-to-register">Days left to register</label>
-          </div></div>
-          <!-- show events of location... -->
-          <div class="col-lg-3"><div class="input-group">
-            <label class="input-group-addon" for="event-locality">Show events in</label>
-            <input type="text" class="form-control" id="event-locality" value="Bangalore" aria-label="Locality of Events">
-          </div></div>
-        </div> <!-- /row -->
-      </div> <!-- /container -->
-    </div> <!-- /floating controls -->
-    
-    <!-- list of events go here -->
-    <div class="container"><div class="row">
-      <ul class="event-cards clearfix">
-        {{#each event in model}}
-        <li {{bind-attr class=":col-lg-2 event.isTopEvent:top-event"}}>
-          <div class="card">
-            <h2>{{event.title}}</h2>
-            <div class="event-venue"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>{{event.venue}}</div>
-            <date><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>{{event.date}}</date>
-            {{#link-to "event" event class="thumbnail"}}
-              <img {{bind-attr src="event.thumbUrl"}} {{bind-attr alt="event.title"}}>
-            {{/link-to}}
-            <div class="event-people-registered"><strong>{{event.seatsLeft}}</strong> seats remaining</div>
-            <div class="event-days-left"><strong>{{event.daysLeft}}</strong> days left to register</div>
-            <div>{{#link-to "event" event}}See more{{/link-to}}</div>
-          </div>
-        </li>
-        {{/each}}
-      </ul>
-    </div></div>
-    
-    {{outlet}}
-  </script>
-  
-  <script type="text/x-handlebars" data-template-name="event">
-    <div class="single-event modal fade in" id="eventModal" tabindex="-1" role="dialog" aria-labelledby="Detailed event info" aria-hidden="true"><div class="modal-dialog"><div class="modal-content">
-      <div class="modal-header">
-        <a href="#" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></a>
-        <h2>{{title}}</h2>
-        <div class="event-venue"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>{{venue}}</div>
-        <date><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>{{date}}</date>
-      </div>
-      <div class="modal-body">
-        <img {{bind-attr src="posterUrl"}} {{bind-attr alt="title"}} class="img-responsive">
-        <p>{{description}}</p>
-        <div class="event-speakers">Speaker(s): <span>{{speakers}}</span></div>
-      </div>
-      <div class="modal-footer">
-        <div class="event-people-registered"><strong>{{seatsLeft}}</strong> seats remaining</div>
-        <div class="event-days-left"><strong>{{daysLeft}}</strong> days left to register</div>
-        <!-- percent of seats filled -->
-        <div class="progress">
-          <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" {{bind-attr aria-valuenow="percent"}} aria-valuemin="0" aria-valuemax="100" {{bind-style width="percent" unit="%"}}>
-            {{percent}}% seats booked
-          </div>
-        </div>
-        <a class="btn btn-info" target="_blank">Register now</a>
-      </div>
-    </div></div></div>
-  </script>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
 
-  <script src="js/libs/jquery-1.10.2.js"></script>
-  <script src="js/libs/handlebars-v2.0.0.js"></script>
-  <script src="js/libs/ember-1.9.1.js"></script>
-  <script src="js/libs/ember-data.js"></script>
-  <script src="js/libs/bootstrap.min.js"></script>
-  <script src="js/app.js"></script>
-  <!-- some menial jquery at work -->
-  <script>
-    // on checking or unchecking
-    $("html").on("change", "#people-registered", function() {
-      $(".event-people-registered").toggle();
-    });
-    
-    $("html").on("change", "#days-to-register", function() {
-      $(".event-days-left").toggle();
-    });
-    
-    $("html").on("change", "#top-events", function() {
-      $(".event-cards li").not(".top-event").toggle();
-    });
-  </script>
-  <!-- to activate the test runner, add the "?test" query string parameter -->
-  <script src="tests/runner.js"></script>
-</body>
+		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+		Remove this if you use the .htaccess -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+		<title>Valonia Events</title>
+		<meta name="description" content="">
+		<meta name="author" content="Himadri Ganguly">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<!-- Style Sheets Start -->
+		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+		<link rel="shortcut icon" href="/favicon.ico">
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+		
+		<link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css" type="text/css" media="screen" title="no title" />
+		<link rel="stylesheet" href="css/bootstrap/css/bootstrap-theme.min.css" type="text/css" media="screen" title="no title" />
+		
+		<link rel="stylesheet" href="css/bootstrap-switch/bootstrap-switch.min.css" type="text/css" media="screen" title="no title" />
+		
+		<link rel="stylesheet" href="css/fontawesome/css/font-awesome.min.css" type="text/css" media="screen" title="no title" />
+		
+		<link rel="stylesheet" href="css/styles.css" type="text/css" media="screen" title="no title" />
+		
+		<!-- Style Sheets End -->		
+		
+	</head>
+
+	<body ng-app="MyApp">
+		
+		<header>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="row">
+							<div class="col-lg-1">
+								<a class="logo" href="http://www.valonia.co.in/">Valonia</a>
+							</div>
+							<div class="col-lg-11">
+								<div class="swtbtn">
+									Top Events
+									<input ng-model="topEvents" ng-true-value="true" ng-false-value="null" type="checkbox" name="my-checkbox" bootstrap-switch />
+								</div>
+								<div class="swtbtn">
+									People Registered
+									<input ng-model="regstate" type="checkbox" name="my-checkbox" bootstrap-switch />
+								</div>
+								<div class="swtbtn">
+									Seats Remaining
+									<input ng-model="seatsLeft" type="checkbox" name="my-checkbox" bootstrap-switch />
+								</div>
+								<div class="swtbtn">
+									Days Left To Register
+									<input ng-model="daysLeft" type="checkbox" name="my-checkbox" bootstrap-switch />
+								</div>			
+								<div class="swtbtn">
+									<span class="input-label">Show Events In</span>
+									<div class="input-container">
+				                        <input ng-model="searchText.city" type="text" class="email text-input" placeholder="Enter Location">
+				                        <div class="input-icon envelope-icon-newsletter">
+				                        	<span class="fa fa-map-marker scnd-font-color"></span>
+				                        </div>
+				                    </div>
+								</div>					
+							</div>
+						</div>						
+					</div>
+				</div>
+			</div>
+		</header>
+		
+		<!-- START OF main-content -->
+		<div class="main-content">
+			
+			<!-- START OF container-fluid -->
+			<div class="container-fluid">
+				<!-- START OF row-->				
+				<div class="row">	
+														
+					<div class="col-lg-12" ng-controller="EventsCtrl">
+						<div class="row">							
+						
+							<ul class="event-list clearfix">	
+								
+								<li class="col-lg-4 col-sm-4 col-md-4 col-xs-12" ng-repeat="valinaevent in valinaevents | orderBy: 'date' | filter:searchText | filter:topEvents">								
+									<div class="event block clearfix">							
+										<div class="event-picture big-event-picture">
+				                        	<img class="img-rsponsive" width="150" height="150" ng-src="{{valinaevent.thumbUrl}}" alt="{{event.title}}">
+				                    	</div>
+				                    	<h1 class="event-name">{{valinaevent.title}}</h1>
+				                    	<div class="event-description clearfix">
+				                    		
+				                    		<div ng-if="valinaevent.isTopEvent == true" class="tag-horizontal -position-left -color-blue -triangle-right -has-pointer-events">
+											  <div>
+											    <span>Top Event</span>
+											  </div>
+											</div>
+			
+				                       		<p class="scnd-font-color">{{valinaevent.shortDescription}}</p>
+				                       		<!-- <p class="scnd-font-color"><strong>Speaker(s):</strong> Prof. Seus</p> -->
+				                       		<p class="scnd-font-color"><i class="fa fa-map-marker"></i> {{valinaevent.venue}} (<strong class="city">{{valinaevent.city}}</strong>)</p>
+				                       		<!-- <p class="scnd-font-color"><i class="fa fa-calendar"></i> 12th Feb 2014</p> -->
+				                       		<p ng-show="regstate" class="scnd-font-color"><i class="fa fa-users"></i> {{valinaevent.registered}} people registered</p>
+				                       		<p ng-show="seatsLeft" class="scnd-font-color"><i class="fa fa-life-ring"></i> {{valinaevent.seatsLeft}} seats remaining</p>
+				                       		<p ng-show="daysLeft" class="scnd-font-color"><i class="fa fa fa-calendar-o"></i> {{valinaevent.daysLeft}} days remaining</p>
+				                       						                       		
+				                       		<!-- Button trigger modal -->
+											<button class="subscribe button" data-toggle="modal" ng-click="open(valinaevent)" >
+												Read More
+											</button>
+																					
+																
+				                       		<ul class="event-options horizontal-list clearfix">
+						                    	<li>
+						                    		<div class="comments">
+						                    			<p>
+						                    				<span class="icon fa fa-user-plus scnd-font-color"></span>{{valinaevent.speakers}}
+						                    			</p>
+						                    		</div>
+						                    	</li>
+						                        <li>
+						                        	<div class="views">
+						                        		<p>
+						                        			<span class="icon fa fa-calendar scnd-font-color"></span>{{valinaevent.date}}
+						                        		</p>
+						                        	</div>
+						                        </li>
+						                    </ul>
+				                    	</div>
+									</div>															
+								</li>			
+								<li ng-hide="!events.length" class="col-lg-12 no-events hide-error">Sorry! There are no events in your city.</li>																	
+							</ul>
+							
+							<script type="text/ng-template" id="myEventContent.html">
+								<div class="modal-header">
+								        <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="cancel()"><span aria-hidden="true">&times;</span></button>
+								        <h4 class="modal-title" id="myModalLabel">{{valinaevent.title}}</h4>
+								        <span class="modal-span-venue scnd-font-color"><i class="fa fa-map-marker"></i> {{valinaevent.venue}} (<strong class="city">{{valinaevent.city}}</strong>)</span>
+								        <span class="modal-span-date scnd-font-color"><i class="fa fa-calendar"></i> {{valinaevent.date}}</span>
+								        <span class="modal-span-speaker scnd-font-color"><i class="fa fa-user-plus"></i> {{valinaevent.speakers}}</span>
+								        <span class="modal-span-seatsrem scnd-font-color"><i class="fa fa fa-calendar-o"></i> <ng-pluralize count="{{valinaevent.seatsLeft}}" when="{'0': 'Sorry No Seats Available', 'one': '1 seat remaining', 'other': '{} seats left'}"></ng-pluralize></span>
+								      </div>
+								      <div class="modal-body">
+								      	<img class="img-responsive border-style1" alt="Alfa conf" ng-src={{valinaevent.posterUrl}} />
+								      	<p>{{valinaevent.description}}</p>
+								      	<p class="scnd-font-color daysrem"><i class="fa fa fa-calendar-o"></i> <ng-pluralize count="{{valinaevent.daysLeft}}" when="{'0': 'Sorry Time Over', 'one': '1 day remaining', 'other': '{} days remaining'}"></ng-pluralize></p>
+								      	<div class="progress">
+										  <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="{{valinaevent.percent}}" aria-valuemin="0" aria-valuemax="100" style="width: {{valinaevent.percent}}%">
+										    <span>{{valinaevent.percent}}% Seats Booked</span>
+										  </div>
+										</div>
+										<a class="subscribe button" href="#">Register</a>
+								      </div>
+							</script>							
+							
+						</div>									
+					</div>
+									
+				</div>	
+				<!-- END OF row -->								
+			</div>
+			<!-- END OF container-fluid -->
+				
+		</div>
+		<!-- END OF main-content -->
+		
+		<footer>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+						<span>Application is Powered by <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap </a> | <a href="http://fortawesome.github.io/Font-Awesome/" target="_blank">Fontawesome</a> | <a href="http://jquery.com/" target="_blank">jQuery </a> | <a href="https://angularjs.org/" target="_blank">AngularJS</a></span>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+						<span class="developer">Developed by <a href="https://github.com/himadriganguly" target="_blank">Himadri Ganguly</a></span>
+					</div>
+				</div>
+			</div>			
+		</footer>
+			
+	
+		<!-- Scripts Start -->
+		<script src="js/library/jquery-2.1.3.min.js" type="text/javascript" ></script>
+		<script src="js/bootstrap/js/bootstrap.min.js" type="text/javascript" ></script>
+		<script src="js/bootstrap-switch/bootstrap-switch.min.js" type="text/javascript" ></script>
+		
+		<script src="js/library/angular.min.js" type="text/javascript"></script>	
+		<script src="js/library/ui-bootstrap-tpls-0.12.0.min.js" type="text/javascript"></script>	
+		<script src="js/controller.js" type="text/javascript" ></script>
+		
+		<script type="text/javascript" charset="utf-8">
+			$("[name='my-checkbox']").bootstrapSwitch();
+		</script>
+		<!-- Script End -->
+		
+	</body>
 </html>
