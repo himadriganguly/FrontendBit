@@ -134,7 +134,7 @@
 				                    	</div>
 									</div>															
 								</li>			
-								<li ng-hide="!valinaevents.length" class="col-lg-12 no-events hide-error">Sorry! There are no events in your city.</li>																	
+								<li ng-hide="!events.length" class="col-lg-12 no-events hide-error">Sorry! There are no events in your city.</li>																	
 							</ul>
 							
 							<script type="text/ng-template" id="myEventContent.html">

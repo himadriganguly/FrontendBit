@@ -60,7 +60,7 @@ ul.event-list {
 	color: #FFFFFF;
 	font-size: 25px;
 	text-align: center;
-	margin-bottom: 10px;
+	margin-bottom: 10px;l
 }
 li + .hide-error {
 	display: none;
